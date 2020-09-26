@@ -1,0 +1,121 @@
+# =============== #
+# Unity generated #
+# =============== #
+[Tt]emp/
+[Oo]bj/
+[Uu]nityGenerated/
+[Ll]ibrary/
+[Bb]uilds
+#[Bb]in/ #removed due to in app purchase thing
+[Tt]empBuild/
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+UWP/
+.vs/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+*.log
+*.tmp
+*.vs
+
+ 
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+#Icon?
+ehthumbs.db
+[Tt]humbs.db
+[Tt]humbs.db.meta
+link.xml
+link.xml.meta
+
+
+# ============ #
+# Builds    #
+# ============ #
+*.apk
+#*.exe
+*.app
+*.ipa
+
+
+# ============ #
+# Others       #
+# ============ #
+*_ReSharper*
+
+
+# ============== #
+# User Generated #
+# ============== #
+
+# Stupid google-play-services aars that keep updating
+#- Go to Assets > Play Services Resolver > Android Resolver > Settings
+#- Un-tick Enable Background resolution (This will suppress the update notifications once we downgrade the .aar files)
+
+#Assets/Plugins/Android/play-services-auth-*
+#Assets/Plugins/Android/play-services-base-*
+#Assets/Plugins/Android/play-services-basement-*
+#Assets/Plugins/Android/play-services-drive-*
+#Assets/Plugins/Android/play-services-games-*
+#Assets/Plugins/Android/play-services-nearby-*
+#Assets/Plugins/Android/play-services-tasks-*
+
+#FOR some reason facebook dll's are ignored(!!?)
+#!*.dll # dont like having this here - *.dll was in eriks global ignore file from visual studio
+Assets/Asset Usage Finder/
+Assets/Asset Usage Finder.meta
+
+#eriks windows build folder
+WindowsBuildsDesktop/
+
+
+#Armanns tools that no one else needs
+Assets/Editor/Instant Screenshot/ScreenshotTaker.cs.meta
+Assets/Editor/Instant Screenshot/Documentation - Instant screenshot.pdf.meta
+Assets/Editor/Instant Screenshot.meta
+Assets/Editor/Instant Screenshot/ScreenshotTaker.cs
+Assets/Editor/Instant Screenshot/Documentation - Instant screenshot.pdf
+Assets/Sandboxes/ArmannsPlayground/Plugins/
+Assets/Sandboxes/ArmannsPlayground/Plugins.meta
+Assets/Editor.meta
+Assets/SMG.meta
+Assets/SMG/
+Assets/AmplifyShaderEditor/
+Assets/Plugins/AmplifyShaderEditor/
+Assets/Plugins/ASECommunityExtras/
+Assets/Plugins/AmplifyShaderEditor.meta
+Assets/Plugins/ASECommunityExtras.meta
+Assets/AmplifyShaderEditor.meta
+Assets/_TerrainAutoUpgrade.meta
+Assets/_TerrainAutoUpgrade/
+
+
+#Jeppe
+
+
+# JetBrains Rider
+.idea/
+Assets/Plugins/Editor/Jetbrains*
+/Assets/_CSMan/Prefabs/Pages.meta
+/Assets/_CSMan/Prefabs/Pages/PlayerAuction_Page.meta
+
+
+# Thomas
+HostedData/
+ServerData/
+Assets/StreamingAssets.meta
