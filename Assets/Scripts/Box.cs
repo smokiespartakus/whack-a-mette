@@ -24,14 +24,16 @@ public class Box : MonoBehaviour
 			if (moles.Count < 3 && RandomHelper.PercentCheck(5)) {
 				AddMole();
 			}
-			moles.ForEach(m => m.RunUpdate(dt));
-			moles.ForEach(m => {
-				if (m.IsEnded()) {
+			moles.ForEach(mm => mm.RunUpdate(dt));
+			Mole m = null;
+			for (int i=moles.Count-1; i>=0; i--) {
+				m = moles[i];
+				if (m != null && m.IsEnded()) {
 					moles.Remove(m);
 					Debug.Log("COUNT" + moles.Count);
 					MolePool.Instance.Recycle(m);
 				}
-			});
+			}
 		}
 	}
 
