@@ -13467,7 +13467,7 @@ MonoBehaviour:
   - {fileID: 280721385}
   - {fileID: 1089610207}
   mole: {fileID: 0}
-  speed: 1
+  level: 1
   timePassed: 0
 --- !u!1 &654702461
 GameObject:
@@ -26220,8 +26220,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278255615
+  m_fontColor: {r: 1, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

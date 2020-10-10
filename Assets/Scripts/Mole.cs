@@ -6,9 +6,10 @@ public class Mole : MonoBehaviour
 {
 	public List<Logo> logos;
 	public bool WasHit { get {return wasHit;}}
-	float initSpeed = 1;
+	float initMoveSpeed = 1;
 	[SerializeField]
-	float speed = 1;
+	float moveSpeed = 1;
+	float level = 1;
 	float xStart = -0.2f;
 	float yStart = 0f;
 	float yStop = 0.8f;
@@ -23,7 +24,8 @@ public class Mole : MonoBehaviour
 	Logo logo;
 	int points = 1;
 	bool wasHit;
-
+	float stayUpTime = 1;
+	float upTime = 0;
 	public delegate void OnMoleHit(int points, Mole mole);
 	public OnMoleHit onHit;
 
@@ -33,34 +35,23 @@ public class Mole : MonoBehaviour
 			child.gameObject.SetActive(false);
 		}
 		SetRandomLogo();
-		speed = initSpeed;
+		moveSpeed = initMoveSpeed;
 	}
 	void OnMouseDown() {
 		Debug.Log("Mouse DOWN" + logo);
 		if (canHit()) Hit();
 	}
-	// Start is called before the first frame update
-	void Start()
-	{
-		
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-		
-	}
-
 	public void AddToHole(Hole h) {
 		transform.SetParent(h.transform);
 		Reset();
 		hole = h;
 		movingUp = true;
+		stayUpTime = RandomHelper.GetFloatXToY(0.2f, Mathf.Max(0.5f, 3f - (level * 0.4f)));
 	}
 
 	public void RunUpdate(float deltaTime) {
 		if (IsMoving()) {
-			transform.Translate(Vector3.up * deltaTime * (movingUp ? speed : -1 * speed));
+			transform.Translate(Vector3.up * deltaTime * (movingUp ? moveSpeed : -1 * moveSpeed));
 			if (movingUp && IsOnTop()) {
 				movingUp = false;
 				transform.localPosition = new Vector3(transform.localPosition.x, yStop, transform.localPosition.z);
@@ -68,7 +59,9 @@ public class Mole : MonoBehaviour
 				End();	
 			}
 		} else if (IsOnTop()) {
-			if(RandomHelper.PercentCheck(1)) {
+			upTime += deltaTime;
+			if (upTime > stayUpTime) {
+			//if (RandomHelper.PercentCheck(1)) {
 				movingDown = true;
 			}
 		}
@@ -86,15 +79,15 @@ public class Mole : MonoBehaviour
 	public void RunHit() {
 		movingDown = true;
 		movingUp = false;
-		speed *= 2;
+		moveSpeed *= 2;
 		wasHit = true;
 	}
 	public bool IsEnded() {
 		return ended;
 	}
 
-	public void SetSpeed(float newSpeed) {
-		initSpeed = newSpeed;
+	public void SetLevel(float newLevel) {
+		level = newLevel;
 	}
 
 	void End() {
@@ -108,6 +101,8 @@ public class Mole : MonoBehaviour
 		ended = false;
 		hole = null;
 		wasHit = false;
+		upTime = 0;
+		stayUpTime = 1;
 	}
 	void Hit() {
 		onHit?.Invoke(points, this);

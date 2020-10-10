@@ -8,7 +8,7 @@ public class Box : MonoBehaviour
 	public List<Hole> holes;
 	public Mole mole;
 	[SerializeField]
-	private float speed = 1;
+	private float level = 1;
 	[SerializeField]
 	
 	private float timePassed = 0;
@@ -38,19 +38,17 @@ public class Box : MonoBehaviour
 	{
 		if (clearMoles) {
 			clearMoles = false;
-			/*
 			foreach(Mole m in moles) {
 				if (m != null) RecycleMole(m);
 			}
-			*/
 		}
 		else if (isPlaying) {
 			float dt = Time.deltaTime;
 			timePassed += dt;
-			float newSpeed = Mathf.Floor(timePassed / 20) + 1;
-			if (!isDemoMode && newSpeed != speed) {
-				Debug.Log("New Speed " + newSpeed);
-				speed = newSpeed;
+			float newLevel = Mathf.Floor(timePassed / 20) + 1;
+			if (!isDemoMode && newLevel != level) {
+				Debug.Log("New Level " + newLevel);
+				level = newLevel;
 			}
 			if (moles.Count < 3 && RandomHelper.PercentCheck(5)) {
 				AddMole();
@@ -94,7 +92,7 @@ public class Box : MonoBehaviour
 	}
 
 	void Reset() {
-		speed = 1;
+		level = 1;
 		timePassed = 0;
 		isPlaying = false;
 		isDemoMode = false;
@@ -106,7 +104,7 @@ public class Box : MonoBehaviour
 		Mole m = MolePool.Instance.GetMole();
 		Hole h = GetRandomEmptyHole();
 		if (h) {
-			m.SetSpeed(speed);
+			m.SetLevel(level);
 			m.onHit = OnMoleHit;
 			h.AddMole(m);
 			moles.Add(m);

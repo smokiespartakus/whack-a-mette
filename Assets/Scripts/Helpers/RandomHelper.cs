@@ -8,6 +8,10 @@ public class RandomHelper
 		return Random.Range(1, y + 1);
 	}
 
+	public static float GetFloatXToY(float x, float y) {
+		return Random.Range(x, y);
+	}
+
 	public static int GetInt0ToX(int x) {
 		return GetIntXToY(0, x);
 	}

@@ -48,8 +48,10 @@ public class GameController : MonoBehaviour
 	}
 
 	void OnMoleHit(int points, Mole mole) {
-		
 		score += points;
+		UpdateScoreText();
+	}
+	void UpdateScoreText() {
 		scoreText.text = "Score: " + score;
 	}
 	void OnMoleMiss() {
@@ -66,5 +68,6 @@ public class GameController : MonoBehaviour
 	void Reset() {
 		score = 0;
 		missedMoles = 0;
+		UpdateScoreText();
 	}
 }

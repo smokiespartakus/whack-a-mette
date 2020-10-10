@@ -22,6 +22,7 @@ public class MenuController : MonoBehaviour
 		continueButton.onClick.AddListener(ContinueClick);
 		quitButton.onClick.AddListener(QuitClick);
 		int hs = PlayerPrefHelper.GetHighscore();
+		Debug.Log("Show Menu HS" + hs);
 		if (hs > 0) {
 			hsText.text = "Highscore: " + hs;
 		} else {

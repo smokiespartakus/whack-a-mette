@@ -19,7 +19,6 @@ public class Hole : MonoBehaviour
 	public void AddMole(Mole m) {
 		mole = m;
 		m.AddToHole(this);
-		Debug.Log("Add Mole!");
 	}
 
 	public void RemoveMole() {

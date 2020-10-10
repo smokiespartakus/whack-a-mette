@@ -7,6 +7,7 @@ public class PlayerPrefHelper
 
 	public static bool UpdateHighscore(int score) {
 		int hs = GetHighscore();
+		Debug.Log("UPDATE HIGH " + hs + " " + score);
 		if (score > hs) {
 			PlayerPrefs.SetInt("HIGHSCORE", score);
 			return true;
@@ -14,6 +15,6 @@ public class PlayerPrefHelper
 		return false;
 	}
 	public static int GetHighscore() {
-		return PlayerPrefs.GetInt("HIGSCORE", 0);
+		return PlayerPrefs.GetInt("HIGHSCORE", 0);
 	}
 }
