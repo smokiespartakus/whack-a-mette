@@ -10,6 +10,7 @@ public class MainController : MonoBehaviour
 	public Box box;
 	void OnEnable() {
 		ShowMenu(true);
+		UpdateScreenSize();
 	}
 
 	void OnDisable() {
@@ -57,5 +58,9 @@ public class MainController : MonoBehaviour
 	public MainController HidePostGame() {
 		postGame.gameObject.SetActive(false);
 		return this;
+	}
+	void UpdateScreenSize() {
+		//RectTransform rect = GetComponent<RectTransform>();
+		//transform.wi
 	}
 }
