@@ -118,7 +118,7 @@ public class Mole : MonoBehaviour
 	}
 
 	bool canHit() {
-		return !wasHit;
+		return !wasHit && (!logo || logo.canBeHit);
 	}
 
 }
