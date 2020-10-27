@@ -202,7 +202,7 @@ PrefabInstance:
     - target: {fileID: 6936002751940225680, guid: 0f914dd24ce727f479cf4db5055c303d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: 6936002751940225680, guid: 0f914dd24ce727f479cf4db5055c303d,
         type: 3}
@@ -267,7 +267,7 @@ PrefabInstance:
     - target: {fileID: 6936002751940225686, guid: 0f914dd24ce727f479cf4db5055c303d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f914dd24ce727f479cf4db5055c303d, type: 3}
@@ -469,6 +469,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &144064079 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6936002751940225686, guid: 0f914dd24ce727f479cf4db5055c303d,
+    type: 3}
+  m_PrefabInstance: {fileID: 24324651}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &186201327
 GameObject:
   m_ObjectHideFlags: 0
@@ -16786,7 +16792,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2376
+  m_Name: pb_Mesh-12916
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20202,7 +20208,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f642945e15b74849bb81a701517863a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIGameobject: {fileID: 2012575938}
+  uiGameobject: {fileID: 2012575938}
+  moleGameObject: {fileID: 144064079}
+  cursorTexture: {fileID: 2800000, guid: 8c9ede38c9f546047b231e06e48d188e, type: 3}
 --- !u!1 &1014311576
 GameObject:
   m_ObjectHideFlags: 0
