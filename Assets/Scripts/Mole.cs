@@ -38,7 +38,7 @@ public class Mole : MonoBehaviour
 		moveSpeed = initMoveSpeed;
 	}
 	void OnMouseDown() {
-		Debug.Log("Mouse DOWN" + logo);
+		//Debug.Log("Mouse DOWN" + logo);
 		if (canHit()) Hit();
 	}
 	public void AddToHole(Hole h) {
@@ -70,7 +70,7 @@ public class Mole : MonoBehaviour
 		logo = RandomHelper.GetListElement<Logo>(logos);
 		if (logo != null) {
 			logo.gameObject.SetActive(true);
-			Debug.Log("RANDOM " + logo.name);
+			// Debug.Log("RANDOM " + logo.name);
 		} else {
 			throw new System.Exception("No logos found");
 		}

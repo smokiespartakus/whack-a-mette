@@ -47,7 +47,7 @@ public class Box : MonoBehaviour
 			timePassed += dt;
 			float newLevel = Mathf.Floor(timePassed / 20) + 1;
 			if (!isDemoMode && newLevel != level) {
-				Debug.Log("New Level " + newLevel);
+				// Debug.Log("New Level " + newLevel);
 				level = newLevel;
 			}
 			if (moles.Count < 3 && RandomHelper.PercentCheck(5)) {
@@ -112,7 +112,7 @@ public class Box : MonoBehaviour
 	}
 	void RecycleMole(Mole m) {
 		moles.Remove(m);
-		Debug.Log("COUNT" + moles.Count);
+		// Debug.Log("COUNT" + moles.Count);
 		MolePool.Instance.Recycle(m);
 	}
 

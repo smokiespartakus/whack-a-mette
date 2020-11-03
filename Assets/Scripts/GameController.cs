@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
 	public TMPro.TextMeshProUGUI scoreText;
 	public Button menuButton;
 	public MainController mainCtrl;
+	public Transform metteArm;
+
 	public bool IsPlaying {
 		get{
 			return box.IsPlaying;
@@ -50,12 +52,13 @@ public class GameController : MonoBehaviour
 	void OnMoleHit(int points, Mole mole) {
 		score += points;
 		UpdateScoreText();
+		FlyArm(mole);
 	}
 	void UpdateScoreText() {
 		scoreText.text = "Score: " + score;
 	}
 	void OnMoleMiss() {
-		Debug.Log("ON MOLE MUSS" + missedMoles);
+		//Debug.Log("ON MOLE MUSS" + missedMoles);
 		missedMoles++;
 		if (missedMoles == 10) {
 			EndGame();
@@ -69,5 +72,12 @@ public class GameController : MonoBehaviour
 		score = 0;
 		missedMoles = 0;
 		UpdateScoreText();
+	}
+	void FlyArm(Mole mole) {
+		// metteArm.gameObject.SetActive(true);
+		// Vector3 mp = mole.transform.position;
+		// Debug.Log("POS " + mp);
+		// metteArm.position = new Vector3(-1 * mp.x + 3.3f, -1 * mp.y + 5.7f, -1* mp.z - 0.2f);
+		// metteArm.localRotation = Quaternion.Euler(0f,0f,105f);
 	}
 }
