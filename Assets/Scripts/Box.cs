@@ -5,15 +5,18 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
 
-	public List<Hole> holes;
-	public Mole mole;
+	//public List<Hole> holes;
+
+	public List<Mole> moles;
+	public MoleSprite moleSpritePrefab;
+
 	[SerializeField]
 	private float level = 1;
 	[SerializeField]
 	
 	private float timePassed = 0;
 	private bool clearMoles;
-	List<Mole> moles = new List<Mole>();
+	List<Mole> activeMoles = new List<Mole>();
 	
 	public bool IsPlaying {
 		get {
@@ -25,21 +28,35 @@ public class Box : MonoBehaviour
 	private bool gameIsPlaying = false;
 	private bool isDemoMode = false;
 	// Start is called before the first frame update
-	void Start()
-	{
-	}
 	public delegate void OnMoleHitDelegate(int points, Mole mole);
 	public OnMoleHitDelegate onMoleHit;
 	public delegate void OnMoleMissDelegate();
 	public OnMoleMissDelegate onMoleMiss;
+
+	void OnEnable() {
+		foreach (Mole m in moles) {
+			m.Reset();
+			m.gameObject.SetActive(false);
+		}
+	}
+
+	void Start() {
+		foreach (Mole m in moles) {
+			MoleSprite spr = Instantiate(moleSpritePrefab);
+			m.SetSprite(spr);
+			spr.transform.localPosition = new Vector3(0f, 0.001f, 0f);
+			spr.transform.localScale = new Vector3(0.35f, 0.35f, 0.35f);
+			m.Reset();
+		}
+	}
 
 	// Update is called once per frame
 	void Update()
 	{
 		if (clearMoles) {
 			clearMoles = false;
-			foreach(Mole m in moles) {
-				if (m != null) RecycleMole(m);
+			foreach (Mole m in moles) {
+				m.Reset();
 			}
 		}
 		else if (isPlaying) {
@@ -50,18 +67,20 @@ public class Box : MonoBehaviour
 				// Debug.Log("New Level " + newLevel);
 				level = newLevel;
 			}
-			if (moles.Count < 3 && RandomHelper.PercentCheck(5)) {
-				AddMole();
+			if (activeMoles.Count < 3 && RandomHelper.PercentCheck(5)) {
+				ShowMole();
 			}
-			moles.ForEach(mm => mm.RunUpdate(dt));
 			Mole m = null;
-			for (int i=moles.Count-1; i>=0; i--) {
-				m = moles[i];
+			for (int i=activeMoles.Count-1; i>=0; i--) {
+				m = activeMoles[i];
 				if (m != null && m.IsEnded()) {
-					if (!m.WasHit) {
+					if (!m.WasHit && !isDemoMode) {
 						onMoleMiss?.Invoke();
 					}
-					RecycleMole(m);
+				//	Debug.Log("ENDED " + m.name);
+					//m.gameObject.SetActive(false);
+					m.Reset();
+					activeMoles.RemoveAt(i);
 				}
 			}
 		}
@@ -100,29 +119,24 @@ public class Box : MonoBehaviour
 		gameIsPlaying = false;
 	}
 
-	void AddMole() {
-		Mole m = MolePool.Instance.GetMole();
-		Hole h = GetRandomEmptyHole();
-		if (h) {
+	void ShowMole() {
+		Mole m = RandomHelper.GetListElement<Mole>(moles.FindAll(x => !x.IsActive()));
+		if (m) {
 			m.SetLevel(level);
 			m.onHit = OnMoleHit;
-			h.AddMole(m);
-			moles.Add(m);
+			m.SetRandomLogo();
+			activeMoles.Add(m);
+			m.Show();
 		}
-	}
-	void RecycleMole(Mole m) {
-		moles.Remove(m);
-		// Debug.Log("COUNT" + moles.Count);
-		MolePool.Instance.Recycle(m);
 	}
 
-	Hole GetRandomEmptyHole() {
-		List<Hole> tmp = new List<Hole>();
-		foreach (Hole h in holes) {
-			if (h != null && h.IsEmpty()) tmp.Add(h);
+	Mole GetRandomInactiveMole() {
+		List<Mole> tmp =  new List<Mole>();
+		foreach (Mole m in moles) {
+			if (m != null && !m.IsActive()) tmp.Add(m);
 		}
 		if (tmp.Count == 0) return null;
-		return RandomHelper.GetListElement<Hole>(tmp);
+		return RandomHelper.GetListElement<Mole>(tmp);
 	}
 
 	void OnMoleHit(int points, Mole mole) {

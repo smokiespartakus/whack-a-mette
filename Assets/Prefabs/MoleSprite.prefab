@@ -1587,7 +1587,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7887886415824080817}
-  - component: {fileID: 8135341043141724561}
+  - component: {fileID: 9083818385417918516}
   - component: {fileID: 1509651221247777325}
   m_Layer: 0
   m_Name: MoleSprite
@@ -1625,7 +1625,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8135341043141724561
+--- !u!114 &9083818385417918516
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1634,7 +1634,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6494660052381222946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49bc5d2121b32c145ab6e2dfe9ca0078, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c5129d018620224ebed0b325c414cb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   logos:
@@ -1651,7 +1651,6 @@ MonoBehaviour:
   - {fileID: 7298029169050239555}
   - {fileID: 6193470477013071172}
   - {fileID: 7472118970013405911}
-  moveSpeed: 1
 --- !u!212 &1509651221247777325
 SpriteRenderer:
   m_ObjectHideFlags: 0
