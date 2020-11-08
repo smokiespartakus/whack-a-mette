@@ -24,6 +24,10 @@ public class RandomHelper
 		return GetInt1ToX(100) <= percent;
 	}
 	
+	public static bool PromilleCheck(int promille) {
+		return GetInt1ToX(1000) <= promille;
+	}
+
 	public static T GetListElement<T>(List<T> list) {
 		if (list.Count == 0) return default(T);
 		try {

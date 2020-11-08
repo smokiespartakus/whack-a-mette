@@ -12,7 +12,12 @@ public class Mole : MonoBehaviour
 	MoleSprite moleSprite;
 	[SerializeField]
 	float level = 1;
+	float maxTimeStart = 2.0f;
+	float maxTimeMin = 0.5f;
+	float minTimeStart = 0.3f;
+	float minTimeMin = 0.15f;
 
+	int maxLevel = 6;
 	bool ended = false;
 	int points = 1;
 	bool wasHit;
@@ -59,8 +64,12 @@ public class Mole : MonoBehaviour
 		gameObject.SetActive(true);
 		LTDescr tween = LeanTween.moveLocalY(gameObject, yStop, moveTimeUp);
 		tween.setOnComplete(() => {
-			if (IsActive())
-				StartCoroutine(HideInSeconds(RandomHelper.GetFloatXToY(0.2f, 2.0f)));
+			if (IsActive()) {
+				float from = GetLevelTime(minTimeStart, minTimeMin);
+				float to = GetLevelTime(maxTimeStart, maxTimeMin);
+				Debug.Log("FROM="+from+" TO="+to);
+				StartCoroutine(HideInSeconds(RandomHelper.GetFloatXToY(from, to)));
+			}
 		});
 	}
 
@@ -135,6 +144,9 @@ public class Mole : MonoBehaviour
 			});
 		});
 	
+	}
+	float GetLevelTime(float start, float min) {
+		return Mathf.Max(min, start - (level - 1) * ((start - min) / (maxLevel-1)));
 	}
 
 }

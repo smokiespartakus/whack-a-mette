@@ -11,7 +11,7 @@ public class Box : MonoBehaviour
 	public MoleSprite moleSpritePrefab;
 
 	[SerializeField]
-	private float level = 1;
+	private int level = 1;
 	[SerializeField]
 	
 	private float timePassed = 0;
@@ -63,13 +63,15 @@ public class Box : MonoBehaviour
 		else if (isPlaying) {
 			float dt = Time.deltaTime;
 			timePassed += dt;
-			float newLevel = Mathf.Floor(timePassed / 20) + 1;
+			int newLevel = (int) Mathf.Floor(timePassed / 10) + 1;
 			if (!isDemoMode && newLevel != level) {
 				// Debug.Log("New Level " + newLevel);
 				level = newLevel;
 			}
-			if (RandomHelper.PercentCheck(5)) {
-				Debug.Log("TRY SHOW MOLE; active=" + activeMoles.Count);
+			// level 20->60
+			int promille = Mathf.Min(60, 20 + (level - 1) * 8);
+			if (RandomHelper.PromilleCheck(25)) {
+			//	Debug.Log("TRY SHOW MOLE; active=" + activeMoles.Count);
 				if (activeMoles.Count < 3) {
 					ShowMole();
 				}
