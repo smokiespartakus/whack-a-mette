@@ -67,7 +67,7 @@ public class Mole : MonoBehaviour
 			if (IsActive()) {
 				float from = GetLevelTime(minTimeStart, minTimeMin);
 				float to = GetLevelTime(maxTimeStart, maxTimeMin);
-				Debug.Log("FROM="+from+" TO="+to);
+				//Debug.Log("FROM="+from+" TO="+to);
 				StartCoroutine(HideInSeconds(RandomHelper.GetFloatXToY(from, to)));
 			}
 		});
