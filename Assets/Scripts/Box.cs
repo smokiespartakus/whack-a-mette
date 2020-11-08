@@ -58,6 +58,7 @@ public class Box : MonoBehaviour
 			foreach (Mole m in moles) {
 				m.Reset();
 			}
+			activeMoles.Clear();
 		}
 		else if (isPlaying) {
 			float dt = Time.deltaTime;
@@ -67,8 +68,11 @@ public class Box : MonoBehaviour
 				// Debug.Log("New Level " + newLevel);
 				level = newLevel;
 			}
-			if (activeMoles.Count < 3 && RandomHelper.PercentCheck(5)) {
-				ShowMole();
+			if (RandomHelper.PercentCheck(5)) {
+				Debug.Log("TRY SHOW MOLE; active=" + activeMoles.Count);
+				if (activeMoles.Count < 3) {
+					ShowMole();
+				}
 			}
 			Mole m = null;
 			for (int i=activeMoles.Count-1; i>=0; i--) {

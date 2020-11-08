@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour
 		Vector3 mp = mole.transform.position;
 		//metteArm.localRotation = Quaternion.Euler(0f,0f,105f);
 		//metteArm.position = new Vector3(-1 * mp.x + 3.3f, -1 * mp.y + 5.7f, -1* mp.z - 0.2f);
-		Debug.Log("POS " + mp);
+		// Debug.Log("POS " + mp);
 		Vector3 newPos = new Vector3(mp.x + armX, mp.y + armY, mp.z + armZ);
 		//metteArm.position = newPos;
 		LeanTween.rotateLocal(metteArm.gameObject, new Vector3(0f, 0f, 105f), 0.2f);

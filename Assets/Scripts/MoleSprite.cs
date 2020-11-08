@@ -7,6 +7,8 @@ public class MoleSprite : MonoBehaviour
 	public List<Logo> logos;
 	//public bool WasHit { get {return wasHit;}}
 	public Logo logo;
+
+	public GameObject redX;
 	
 	public void SetRandomLogo() {	
 		Reset();
@@ -20,7 +22,12 @@ public class MoleSprite : MonoBehaviour
 		}
 	}
 
+	public void ShowRedX() {
+		redX.SetActive(true);
+	}
+
 	public void Reset() {
+		redX.SetActive(false);
 		foreach (Transform t in transform) {
 			transform.gameObject.SetActive(false);
 		}

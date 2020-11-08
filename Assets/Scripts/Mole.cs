@@ -22,9 +22,13 @@ public class Mole : MonoBehaviour
 	void OnEnable() {
 	}
 	void OnMouseDown() {
-		Debug.Log("Mouse DOWN MOLE" + this.name);
+		Debug.Log("Mouse DOWN MOLE" + this.name + " " + CanHit() + " " + IsBlocked());
 		//OnHit?.Invoke();
 		if (CanHit()) Hit();
+		else if (IsBlocked()) {
+			moleSprite.ShowRedX();
+			Shake();
+		}
 	}
 
 	public void SetSprite(MoleSprite sprite) {
@@ -98,5 +102,39 @@ public class Mole : MonoBehaviour
 		return !wasHit && (!moleSprite || !moleSprite.logo || moleSprite.logo.canBeHit);
 	}
 
+	bool IsBlocked() {
+		return moleSprite && moleSprite.logo && !moleSprite.logo.canBeHit;
+	}
+
+	void Update() {
+		/* Shake - needs easing
+		float speed = 100.0f;
+		float amount = 0.01f;
+		Vector3 pos = transform.position;
+		pos.x = Mathf.Sin(Time.time * speed) * amount; // needs original position as well
+		transform.position = pos;
+		*/ 
+	}
+	void Shake() {
+		float startAmount = 0.02f;
+		float amount = startAmount;
+		float posX = transform.localPosition.x;
+		float time = 0.05f;
+		int times = 5;
+		OneShakeX(posX, amount, startAmount, times, time);
+	}
+	void OneShakeX(float startPosX, float amount, float startAmount, int times, float time) {
+		LeanTween.moveLocalX(gameObject, startPosX + amount / 2, time).setOnComplete(() => {
+			LeanTween.moveLocalX(gameObject, startPosX - amount / 2, time).setOnComplete(() => {
+				amount -= startAmount / times;
+				if (amount > 0) {
+					OneShakeX(startPosX, amount, startAmount, times, time);
+				} else {
+					LeanTween.moveLocalX(gameObject, startPosX, time / 2);
+				}
+			});
+		});
+	
+	}
 
 }
